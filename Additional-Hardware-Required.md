@@ -1,0 +1,43 @@
+In order to use the KrakenSDR some additional hardware like power supplies, cables, computing hardware and antennas are required. We list our recommendations here.
+
+# Computing Hardware
+The KrakenSDR requires a computing platform for run on. Our open source code can run on any Linux device with sufficient computing power. We recommend computing power of at least a Raspberry Pi 4 or better. Any computing platform used should at least support USB 2.0, have 4+ cores and be capable of running a Debian Linux distribution like Ubuntu.
+
+Due to the ubiquity of Raspberry Pi 4 devices we provide ready to use images for this platform. For all other platforms the code will need to be manually installed. Any 2GB or larger Pi 4 model will work, however we recommend trying to obtain the [newer model Pi 4's that can turbo to 1.8 GHz](https://www.raspberrypi.com/news/bullseye-bonus-1-8ghz-raspberry-pi-4/). We also recommend obtaining an aftermarket fan cooling solution for the Pi 4 as if the CPU throttles significantly due to overheating the code may run slowly and lag. The newer model Pi 4's almost never throttle even without cooling, but older ones tend to throttle much easier. Optionally we also suggest overclocking them to 2 GHz or higher for best performance as long as you have sufficient cooling in place. 
+
+We have also tested the code and confirmed the KrakenSDR and code to run well on the following devices
+
+* Linux x86 Machines
+* Odroid N2
+* Tinkerboard
+* Jetson Nano (No GPU Support)
+
+Use on Linux Virtual Machines may not be possible due to the USB latency introduced. Further testing is required.
+
+# Power Supplies
+Your chosen computing platform and the KrakenSDR will each require a separate power supply connection. The KrakenSDR requires a 5V USB-C power connection with a current capacity of at least 2.4A.
+
+For the Pi 4 we recommend the official Pi 4 USB-C power supply. For the KrakenSDR any USB-C 5V power pack that can supply at least 2.4A can be used. Power packs that support 'PD' are also supported.
+
+The KrakenSDR **MUST** be connected to a power supply. No power is supplied through the data port.
+
+## Mobile and Vehicular Power Supplies
+For use in vehicles it is possible to use a USB cigarette lighter adapter. Be sure that you obtain an adapter than has two USB ports, with at least one supporting at least 3A output. Adapters labelled USB3.0, USB-C and USB 'PD & QC' are generally good choices as they have high output capacity. 
+
+USB ports directly built into cars are generally limited to 1A - 1.5A, and may not be able to provide enough power.
+
+For mobile man-pack or other mobile uses, a high capacity portable lithium ion battery pack with a 3A output will work well for a few hours.
+
+# Antennas and RF Coax Cables
+The KrakenSDR requires an antenna array to work as a direction finder.  The requirements are
+
+* 5x Identical antennas
+* 5x Identical cable lengths
+* Precise positioning (if fixed)
+
+Cable length precision between 5 separate cables can be an issue for cheaper magnetic mount antennas, or cheaply cut lengths of cable. For operation under 800 MHz try to keep cable lengths within 1cm of one another. For higher frequencies you will want sub 1cm precision for best results.
+
+## Antenna Array Suppliers
+**KrakenRF:** For vehicular use, we recommend our own magnetic mount antenna sets currently available from the Crowd Supply store. These antenna sets have length matched cables for best performance.
+
+**Arrow Antennas:** For fixed sites, the [KrakenSDR antenna array from Arrow Antennas](https://www.arrowantennas.com/arrowii/krsdr.html) may be a good choice. Be sure to order 5 matching cables from them too. Please note that this is a third party company.
