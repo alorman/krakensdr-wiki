@@ -1,0 +1,63 @@
+## Enclosure Drawing
+![image](https://user-images.githubusercontent.com/78108016/170426967-eb46003d-9138-4961-9c8f-ea6085997632.png)
+
+## Connecting to an Established WiFi Network
+If you are using either the Kraken DF or Kraken PR pre-made images on a fixed WiFi network, instead of using hotspots, then you will need to add your WiFi network details. To do so you will need to temporarily connect your Pi 4 to a monitor and keyboard or connect your Pi 4 using Ethernet and SSH into it. 
+
+The default login credentials for the terminal and SSH are pi/krakensdr, port 22.
+
+To add your network, edit the file: wpa_supplicant.conf
+
+`sudo nano /etc/wpa_supplicant/wpa_supplicant.conf`
+
+Add your own network by adding the following text
+
+```
+network={
+        ssid="MY_WIFI_SSID"
+        psk="MY_WIFI_PASSWORD"
+}
+```
+Then Press “CTRL+X”, “Y” to close and save the file. Now when you reboot the Pi 4 should automatically connect to your network.
+
+## Port Forwarding
+If you wish to make your KrakenSDR remotely accessible over the internet you will need to set your router to forward ports 8080 for the web interface, and port 8081 for the data output for external apps. 
+
+Instead of port forwarding, you may wish to investigate more modern VPN solutions like [Zerotier](https://www.zerotier.com/).
+
+## Port Security
+Be aware that if you expose port 8080 to the internet, then your KrakenSDR will be open to being controlled publicly by anyone with your IP address. Therefore, we do not recommend power forwarding port 8080 unless you have a specific purpose for doing so. In future software enhancements we will be adding a security option for this page.
+
+If you plan on also exposing post 22 so that you can SSH into the device remotely, then we strongly recommend changing the SSH password from “krakensdr” to a custom password.
+
+Again, instead of port forwarding, you could use something modern like Zerotier and avoid these security issues.
+
+## Data Output For Third Party Software
+
+When set to the 'Kraken App' DOA Data Format the latest bearing data will be output to an HTML page at "http://PI4_IP_ADDR:8081/DOA_value.html" in the CSV format every update period.
+
+The output format CSV ordering is as follows:
+```
+1. UNIX Epoch Time : (13 Digit LONG),
+2. Max DOA Angle in Degrees in Compass Convention : (3 Digit 000 - 359, 90deg East),
+3. Confidence Value : (0-99 integer, higher indicates a better quality reading),
+4. RSSI Power in dB : (0 dB is max power),
+5. Channel Center Frequency in Hz,
+6. Antenna Array Arrangement : ("UCA"/"ULA"/"Custom"),
+7. Latency in ms : (Time from signal arrival at antenna, to result. NOT including network latency.),
+8. Station ID : (Name of the KrakenSDR station inputted in the Station Information box in the Web GUI),
+9. Latitude,
+10. Longitude,
+11. Heading,
+12. Heading Sensor Used ("GPS"/"Compass"),
+13-16. Reserved for possible future use,
+17-377. Full 360 degrees DOA output. First element specifies DOA power output at 0 degrees, second element power at 1 degrees etc. NOTE: Uses unit circle convention, so due EAST is classed as 0 degrees, NORTH 90 degrees and so on. Needs to be rotated into compass convention.
+```
+If multiple VFO channels are used, each channel will output it's own unique CSV data from 1-377 separated by a newline character "\n".
+
+## Changing Settings Programmatically
+In the `~/krakensdr_doa/krakensdr_doa` folder there is a file called `settings.json` where the current settings in the Web GUI are stored, including settings like the center frequency and gain.
+
+An external piece of software can edit this file, and the software will automatically update it's settings to those specified once the file is changed.
+
+It is up to you the programmer to ensure that the inputs are valid. Entering incorrect values may crash the software.
