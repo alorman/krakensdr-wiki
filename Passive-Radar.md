@@ -66,7 +66,7 @@ For passive radar the data block length is an important parameter. Longer data b
 
 Another expense is that fast moving objects could spread their energy out over multiple range-doppler cells if the data block length is too long.
 
-We have included three preconfigured DAQ files that can be used which set optimized data block lengths. They are “pr_2ch_2pow20”, “pr_2ch_2pow21” and “pr_2ch_2pow22”. The latter files have longer data block lengths, but update the display slower.
+We have included three preconfigured DAQ files that can be used which set optimized data block lengths. They are `pr_2ch_2pow20`, `pr_2ch_2pow21` and `pr_2ch_2pow22`. The latter files have longer data block lengths, but update the display slower.
 
 The optimal preconfig file will depend on the specific passive radar implementation and target type. So we recommend experimenting with each setting.
 
