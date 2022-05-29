@@ -1,0 +1,79 @@
+# Activating Passive Radar Code
+The ready to use Pi 4 image comes with the Passive Radar code preinstalled. But by default the DOA software is the one that will run on boot. To change to the passive radar code, connect a monitor and keyboard (or SSH in), and edit `start.sh` in the home folder. You will need to comment out the DOA code run lines, and uncomment the passive radar lines.
+
+# Passive Radar
+Active radar systems emit a radio pulse towards a target such as an aircraft and wait for the reflection of that pulse to return. In contrast, a passive radar system emits no signals. Instead, it makes use of already existing powerful transmitters, such as broadcast FM, TV and mobile phone towers.
+
+In a basic two channel passive radar system, you have one ‘reference’ antenna pointing towards an ‘illuminator’, aka a powerful radio transmitter. This reference antenna is used to receive a clean copy of the reference signal. 
+
+The second ‘surveillance’ antenna points towards the targets of interest, such as aircraft, cars or marine vessels. The illuminating signal is reflected off the body of these targets, and the reflections are received by the surveillance antenna. 
+
+The reflections are then processed and correlated against the clean reference signal. The result is a ‘bistatic range-doppler’ display that shows detected targets as dots. The position of the dot on the display measures the velocity of the object, and the bistatic distance.
+
+## Passive Radar Geometry
+In a passive radar system, the geometry of the receiver, transmitter and targets of interest are very important for optimizing performance.
+
+The targets and illuminator cannot be both in the same direction. The reason is that we want the reference antenna to receive only the direct reference signal, and most importantly we want the surveillance antenna to only receive the reflected signal. If the surveillance antenna is drowned out by the direct reference signal, it will be difficult to determine the reflections only.
+
+![image](https://user-images.githubusercontent.com/78108016/170861588-485fb2a3-6e31-4e7f-827d-4361d07f7a55.png)
+
+## Passive Radar Illuminator Choices
+In the modern world there are several possible choices for illuminators. The best characteristics are:
+
+* **Wideband:** The wider the bandwidth, the greater our radar resolution (up to our maximum 2.56 MHz bandwidth limit)
+* **Stable and ‘noise-like’:** HDTV digital signals such as ATSC/DVB-T as well as DAB stations appear noise like in the analogue domain and are desirable. Analogue signals with high variability content like broadcast FM are less desirable. If you must use broadcast FM, a trick is to use heavy metal stations, since heavy metal is closer to white noise.
+* **High power:** The higher the transmit power of the illuminating RF source, generally the stronger reflections and more distant reflections will be observed.
+
+With these characteristics in mind, we recommend using HDTV signals (DVB-T or ATSC), or secondly DAB signals if they exist in your area. Mobile phone 3G/4G/5G signals can also work, but their transmit power is much lower, so they will work only over a smaller area. Broadcast FM is the least desirable due to its small bandwidth and its least noise-like characteristics.
+
+## Passive Radar Antennas
+As per the chapter on passive radar geometry, it is desirable that the reference and surveillance signals are isolated from each other’s antenna. To help with this requirement we can use directional antennas. Directional antennas are antennas that receive with high gain in one direction, and by design attenuate signals in all other directions.
+
+For basic passive radar you will need two directional antennas, such as Yagi’s. As HDTV signals are perfect for passive radar, it is possible and recommended to use cheap TV Yagi antennas from the local electronics store.
+
+### Antenna Isolation Tips
+As mentioned previously, the reference signal should not be received directly by the surveillance antenna as much as possible. We can achieve that using directional Yagi antennas, but there are some other tricks to improve isolation that can be experimented with.
+
+The first trick is to use walls, buildings, and other objects to block the reference signal from directly reaching the surveillance antenna. For example, you might have the reference antenna on one side of a building or car, and the surveillance antenna on the other side.
+
+The second trick is to use polarization to our advantage. A HDTV station may be either horizontally or vertically polarized. The reference Yagi should be oriented with a matching polarization for best reception. However, the surveillance antenna could be oriented in the opposite polarization. The reasoning behind this is that any reflected signals are probably somewhat randomly scattered in terms of polarization, so any antenna orientation should work for the surveillance antenna. And by orienting it in the opposite polarization we get a natural 20dB attenuation of the reference signal.
+
+# Passive Radar Software
+At the time of writing this manual, we have created software that can implement basic 2-channel passive radar. To install it please see our website at krakenrf.com for the most up to date instructions.
+
+Like the direction finding-software, the passive radar software has a configuration and spectrum display screen. The difference is the last page, which is the Passive Radar range-doppler display.
+
+## Passive Radar Configuration Settings
+
+**Enable Passive Radar:** Enable the passive radar computations to be performed.
+
+**Clutter Cancellation:** In most scenarios an algorithm to cancel out stationary ‘clutter’ will need to be used, otherwise stationary clutter returns will dominate, hiding the fainter returns from moving objects. At the time of writing this manual there is one clutter cancellation algorithm called “Wiener MRE” implemented.
+
+**Max Bistatic Range:** How many kilometres of bi-static range to plot on the bi-static range-doppler graph. The choice is dependent on your setup.
+
+**Max Doppler:** What is the max doppler (speed) reading that should be plotted on the range-doppler graph.
+
+**PR Persist:** If enabled, the range doppler display will maintain a history of previous plots with some decay value.
+
+**Persist Decay:** The amount to decay older plot data at each cycle.
+
+**Dynamic Range:** Choose the plot thresholds for dynamic range. Adjust with trial and error depending on your specific setup until you get a good looking range-doppler graph that shows the moving objects clearly.
+
+## Passive Radar DAQ Data Block Length / CPI Size Settings Guide
+The data block length (aka CPI Size) specifies the length of time radio data is collected. This block of data is then forwarded onwards for DSP processing.
+
+For passive radar the data block length is an important parameter. Longer data block lengths result in more processing gain (weaker signal detections), and better range-resolution. This comes at the expense of a slower update rate and more CPU processing time. If you run the code on a fast machine, the update rate will be equal to the data block length time.
+
+Another expense is that fast moving objects could spread their energy out over multiple range-doppler cells if the data block length is too long.
+
+We have included three preconfigured DAQ files that can be used which set optimized data block lengths. They are “pr_2ch_2pow20”, “pr_2ch_2pow21” and “pr_2ch_2pow22”. The latter files have longer data block lengths, but update the display slower.
+
+The optimal preconfig file will depend on the specific passive radar implementation and target type. So we recommend experimenting with each setting.
+
+# Bistatic Range
+The graph provided is a bi-static range doppler graph. Bi-static means that the measurement consists of a transmitter and receiver separated by some distance. This can get complicated, as instead of getting a simple range distance value from the receiver, we end up with an ‘constant range ellipse’ of possible range solutions that depend on some calculations based on the transmitter and receiver positions.
+
+In the future we aim to have software enhancements that make understanding and visualizing the bistatic range on a map much easier. For now, please keep in mind that the range displayed on the range-doppler graph is not simply just the range from the receiver.
+
+![image](https://user-images.githubusercontent.com/78108016/170861790-531a46a8-87f3-442a-941a-89ae110142f3.png)
+
