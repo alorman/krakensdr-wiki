@@ -1,0 +1,161 @@
+<img src="https://user-images.githubusercontent.com/78108016/170637367-ef088a55-5b10-4f84-b427-c56b487624f3.gif" width="300" align="right"/>
+
+The KrakenSDR Android app is free and can be downloaded from the Google Play store at https://play.google.com/store/apps/details?id=com.krakensdr.krakendoa. Or just search for ‘KrakenSDR’ on the Play store.
+
+The app is can be installed on any modern Android device with Android 11.0 or newer, an internet connection, GPS, and compass sensor. We recommend that you have a phone or tablet mount for your vehicle positioned so that you can see the map without compromising on driving safety and legality.
+
+# Why an app?
+Modern Android devices comes with all the sensors and features we need for radio direction finding with a KrakenSDR radio. Android devices have built in GPS and compass sensors and the ability to display maps. Not only that, but we can use the Android device's computing power to run algorithms that can triangulate a transmitter location from hundreds of data points collected in real time, without any manual intervention. This is a lot better than older direction finding devices that have the user simply following a line of bearing, and manually take bearing readings at different locations.
+
+# How the app works
+The Android app receives bearing data relative to the antenna array from the KrakenSDR software through Wi-Fi. It uses the built in GPS to determine the location, and the GPS or compass sensors in the Android device to determine our heading of movement, and from the radio bearing relative to the antenna, and the direction of movement (heading), the app calculates the estimated bearing to the transmitter. The estimated bearing is then plotted on a map from the current GPS position. You should move in the direction of this bearing to make your way towards the transmitter.
+
+In the app the red line indicates the heading of the vehicle, the light blue line is an averaged bearing, and the dark blue line points towards the estimated grid location.
+
+The triangulation feature works by overlaying a grid over a map. When bearing data is received from the KrakenSDR server, each grid cell is activated by a certain amount, depending on 360 degrees of DOA data. Grid cells that are consistently activated more strongly will show up as hotter colors on the grid (red/orange), and cells activated less strongly will show up as cooler colors (green/blue). The grid cell with the highest activation value can be considered to be the most likely location of the transmitter and will be highlighted with a circle.
+
+If the user moves close to the edge of the grid, the grid will automatically re-center and recalculate activations from the logged data.
+
+# Post-data collection analysis
+The App can open a log file that was saved during a live drive, or a log file that was created by the KrakenSDR server itself during an offline logging session. To open a log file simply put the log file into a folder on your Android device's SD card, and use the folder icon to open it. The folder icon is found on the main screen in the top right. 
+
+Using the `Plot Grid and Estimate`, and `Plot Log File` you can plot data from the log file. You may need to move the grid center to another location by long pressing on the map and selecting `MOVE GRID CENTER HERE`.
+
+You may also wish to reduce the bearing line plot distances, to avoid a mess of bearing lines. This can be done in the settings with the `Trace Length` option. Note that opening the settings will close any open log file.
+
+To see information about a particular log point, you can tap on that point. It will show you the RDF bearing, vehicle bearing, power level, confidence value and frequency. It will also plot a yellow DOA lobe.
+
+Each logged point will be colored according to the logged RF power at that location. So you should be able to not only determine the transmitter location by DOA bearings, but also by power. Like the grid heatmap, green and blue dots indicate lower power, and yellow, orange and red indicate high power.
+
+<p align="center">
+<img src="https://user-images.githubusercontent.com/78108016/170623531-53536731-3617-4ff5-8f71-371bdbf530b6.jpg" width="300" align="center"/>
+</p>
+
+# Navigation Feature
+
+The app is designed to make vehicular direction finding safer by allowing the user to keep their eyes on the road while collecting data and travelling towards the transmitter. This is achieved by having an optional turn-by-turn navigation feature, like what you'd find with Google Maps, or an in car GPS system. The user can simply follow the instructions provided by the turn-by-turn navigation voice, and will eventually end up at the transmitter.
+
+When the navigation feature is activated, it will initially navigate to a point 5km away on the averaged bearing line. This is because at the start of the direction finding process we do not have enough data to triangulate the transmitter position. Once we have collected sufficient data, and a grid cell has been activated a certain number of times, the navigation feature will switch to navigating to that grid cell. It will select the closest road to that location.
+
+While driving the navigation goto point will update every 30 seconds.
+
+<p align="center">
+<img src="https://user-images.githubusercontent.com/78108016/170427612-6a75bdc0-20ce-4727-a77e-9897989a6f35.png" width="300" align="center"/></p>
+
+# Explanation of each button and setting
+
+## Top Right Edge Buttons 
+<img src="https://user-images.githubusercontent.com/78108016/170032817-2db99bae-3787-41f8-af12-2749614951f8.png" width="200" align="right"/>
+
+These buttons are used to control the active log file.
+
+**Save:** Create a log file for recording bearing and GPS track data. If you logged data without first creating a log file, pressing save will create a log file with the temporary data saved in it.
+
+**Load:** Load up a previously saved log file. For larger log files or slow devices, the red bar at the bottom of the app will indicate the loading progress.
+
+**Close:** Close any open log file or reset temporary data.
+
+If a log file is active the filename will be shown in the bottom of the screen. If no log file is used it will display "WARNING: No Log File Set", and data will be recorded to temporary memory only.
+
+## Bottom Right Edge Buttons
+<img src="https://user-images.githubusercontent.com/78108016/170030726-35ee2dba-1530-4797-a2b3-38b2b4735b15.png" width="300" align="right" />
+
+These buttons are used to control the main features.
+
+**Frequency/CH Selector:** If you have more than one channel set in the KrakenSDR web interface, you can select a specific channel by frequency here. The default setting of "Single VFO" is designed to be used with one channel output, and if used with multiple channels will use all channels as part of the plot which could create strange results.
+
+**Navigation:** Start the turn-by-turn navigation feature. Press again to stop.
+
+**Start/Stop Direction Finding:** Connect to the KrakenSDR and begin logging data. Sometimes an initial connection may take a few seconds. If "Pause Data Collection When Stationary" is activated in the settings, this icon will turn orange when paused. Otherwise green indicates data collection is active.
+
+**Centre Location:** Centre the map to the current GPS location.
+
+## Top Bar Buttons
+<img src="https://user-images.githubusercontent.com/78108016/170033520-8fad7490-b61a-42d2-a737-b3f025e3a1b9.png" width="200" align="right"/>
+
+**Magnifier:** Search for a location on the map.
+
+**Download:** Download offline maps for the currently zoomed region. If you get an error "MapBox tile limit exceeded", then this means you are trying to download a region size larger than the allowed amount. First delete the maps already downloaded by going to the hamburger menu on the right (the three dots, or a gear icon on some devices), and selecting "Delete Offline Maps". Then zoom into the map a little more and try download maps again.
+
+## Hamburger Menu
+<img src="https://user-images.githubusercontent.com/78108016/170624072-282b4bb6-4b0c-49ed-a317-af58c5add16b.png" width="400" align="right"/>
+
+The hamburger menu is the three dots in the top right (or on some devices it will be a gear icon).
+
+**Settings:** Brings the user to the settings page
+
+**KrakenSDR Server Settings:** Opens the KrakenSDR web GUI.
+
+**Plot Grid and Estimate:** Enables the grid triangulation feature.
+
+**Plot Log File:** Plots each individual log point on the map. Useful for data analysis after a drive. Generally you will not want to plot each data point on the map while driving as it will look very cluttered.
+
+**Show Markers:** Show or hide markers you have added via the long press menu
+
+**Nav Mode:** Determines where the turn-by-turn navigation will navigate to. DOA Avg will take you to a point 5km away on the averaged DOA bearing line. Grid Centroid will take you to the estimated transmitter location on the grid. Auto will start in DOA Avg mode, until the grid has been activated enough times, then it will switch to Grid Centroid mode. 
+
+In auto mode the red bar at the bottom will indicate how close you are to the Nav Mode switch over threshold.
+
+**Delete Offline Maps:** Delete any offline maps you've previously downloaded. Required if you want to download new offline maps and you're near to the max limit of offline tiles.
+
+## Long Press Menu
+<img src="https://user-images.githubusercontent.com/78108016/170624714-dbb97c1b-714f-45cc-83a4-64d55dbb88f2.png" width="400" align="right"/>
+
+Long pressing on the map will pull up a new menu.
+
+**Add marker:** Adds a marker that can be used to designate a known transmitter location.
+
+**Navigate here:** You can override auto navigation with this button. The navigation point is where you long pressed on the map.
+
+**Move grid center here:** If you open a log file you may wish to move the grid center as by default the grid is centered on your GPS location.
+
+## Settings Page
+
+**Server Address:** The IP address or hostname of the KrakenSDR server (the Pi 4, or computer running the KrakenSDR software)
+
+**Pause Data Collection When Stationary:** If the GPS mode of bearing is used, you may wish to pause data collection when stationary to avoid bad vehicle bearing results.
+
+**Logging Period:** How often the app records received data to the local log file. The default of 1 second is usually more than enough data to get good results. If you are planning on monitoring many channels and logging for a long period of time, you may wish to increase this period to avoid the log file growing too large.
+
+**Skip Every X Point:** Skip every X log point during plotting and logging. Useful if you have a large log file and your Android device is a bit slow and struggles to plot many points.
+
+**Minimum Required Confidence:** The confidence value is an estimation on how ‘good’ a single DOA result was. A good result is when the 360 Polar DOA plot has a single tight lobe. Trial and error with this value may help reduce the data size by discarding the poorest results. But it is generally not required unless you really need to reduce log file sizes.
+
+**Minimum Required Power:** Discard any values below a certain received power level. Generally not needed unless you really need to reduce log file sizes.
+
+**Total Grid Size:** How far the direction-finding grid should extend in kilometers. Larger grids will result in larger cell sizes, if the number of grids per axis setting is not increased. The default of 10km should be sufficient for most cases. The grid will center with the user location once the user comes within 25% of the edge of the grid.
+
+**Number of Grids per Axis:** Defines the size of each grid cell. More grids per axis results in smaller grids, and greater resolution. At the expense of a possible increase in computation time. If the grid size is 10km, and the number of grids per axis is 100, then then each cell size will be 100mx100m each.
+
+**Grid Estimation Mode:** Either choose to use the Full 360 degrees of data provided by the KrakenSDR with the grid system, use only a single bearing for the maximum bearing with the grid system, or use a single bearing with an intersection calculation algorithm. Generally, the full 360 method yields the best results as it provides the most data and naturally filters outliers. The full 360 method projects the 360 degrees of DOA data onto the grid, so every cell gets activated by some amount. Very old and slow devices may prefer to use the less computationally intensive Raytrace or Intersection algorithms.
+
+**Trace Length:** How long the displayed bearing traces should extend on the map. It may be especially useful to reduce this when looking at log files, to reduce the mess of lines.
+
+**Average Displayed Bearing:** Direction finding is a noisy process, and the bearing can jump around a lot which can be difficult for a human to track. Here you can enable bearing averaging which will filter the jumpiness out of the bearing line. It has no effect on the grid or intersection calculations, and averaged bearings are not recorded in the log file.
+
+**Map Settings:** Choose between a street or satellite map. If you are using offline maps, using the satellite map may result in much less tiles being available for download.
+
+**Camera Mode:** Choose between free and auto camera modes. Free mode allows the user to position the map camera manually. Auto camera will automatically follow the vehicle location.
+
+**Zoom Mode:** Choose between free and auto zoom modes. Free mode allows the zoom to be manually sent. Auto camera automatically zooms to the active area between the vehicle location and estimated location.
+
+**Bearing Mode:** The mapping system can use the GPS or Compass sensor for determining the direction of movement (heading). Generally, the GPS sensor provides the most accurate heading, as long as the device is moving. If compass mode is used you will need to be careful with the direction that the physical Android device points toward. For compasses you also need to make sure to calibrate the compass on your device first (find an app for this), and ensure the phone is kept away from metal or magnetic sources that can affect the compass. For fixed sites, the antenna array heading, and location coordinates can be manually set by setting the 'Manual' mode. In the 'Kraken' mode, the app will use the antenna array heading and location provided by the the Kraken server which could be from a USB GPS connected to the Pi 4, or manually set in the Web GUI.
+
+**Speedometer Units:** Choose between metric and imperial speed units, or disable the speedometer graphic.
+
+**Enable Audio Tone:** Enables an audio tone that beeps on every bearing data packet received. Useful for example if you are tracking an intermittent signal and want to know if it's still transmitting, or if you're receiving the signal above the squelch threshold. The pitch of the tone will also rise with increased received power, and decrease with lower received power.
+
+**Number of Intersections Required for Navigation Confidence:** When the Nav Mode is set to Auto, this value determines how many intersections or grid activations are required before the goto location changes from the bearing direction point 5km away, to the actual estimated location.
+
+**Bearing Average Size:** How many bearings to average when bearing averaging is used.
+
+**RDF Mapper Server Address:** If you want to upload to an RDF Mapper server, input the server address here. Don't forget to add the /save.php part!
+
+**RDF Mapper Station Name:** The name of the station ID you wish to upload to the RDF Mapper server.
+
+**Upload to RDF Mapper Server:** Only turn on if you are uploading data to an RDF Mapper Server.
+
+# Running the Android app on a PC
+The app can also be used on a PC through the use of the free [Bluestacks Android Emulator](https://www.bluestacks.com/bluestacks-5.html?utm_source=Google&utm_medium=CPC&utm_campaign=aw-ded-tier1-eng-bluestacks5-brand&gclid=Cj0KCQjwhLKUBhDiARIsAMaTLnGQBPZSWuf6rMnWjFUYutec6Fn-4Ct_6fRRW-7TADV68FHXzYYuRwUaAtsNEALw_wcB). Hold CTRL+ mouse wheel up/down to zoom in/out on the map.
+
+Note that in our tests we had to change the Graphics Engine mode to "Compatibility" under Graphics settings. Otherwise the emulator would crash while zooming in on the map.
