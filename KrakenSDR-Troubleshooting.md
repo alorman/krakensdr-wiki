@@ -1,0 +1,68 @@
+Please note that we can only provide troubleshooting advice for our ready to use Pi 4 images. Due to the huge variation in PC and computing hardware, we are unable to provide direct support for custom installs other than through our forums.
+
+## Check Channel Power Levels
+By default the spectrum only shows the spectrum from CH-1. If you want to check that all channels are receiving signals correctly, under `VFO Configuration`, change the `Spectrum Calculation` value from `Single Ch` to `All Ch (TEST ONLY)`. Now in the spectrum window you will see all five spectrum graphs. Check that all graphs are receiving the signal.
+
+Make sure you change back to `Single Ch` mode after, as the spectrum calculation mode affects how the squelcher works.
+
+## SSH/Terminal Login
+You can log into an SSH terminal by using any Terminal software (eg. PuTTY), and connecting to IP_ADDRRESS:22. The login details are "krakenrf/krakensdr. Note that if you expose port 22 to the internet, we strongly recommend changing the default password.
+
+Alternatively, just connect an HDMI screen and keyboard, and the terminal will automatically login on boot. Note that there is no GUI, the OS is terminal only.
+
+## Enable Logging
+If you have installed the software from scratch, and suspect some issue with missing packages or similar you can enable error logging to try and diagnose the problem. Edit the daq_chain_config.ini text file with `nano ~/krakensdr_doa/heimdall_daq_fw/Firmware/daq_chain_config.ini`, and change `log_level = 2`. Log files will be written to krakensdr_doa/heimdall_daq_fw/Firmware/logs.
+
+Also, you can enable logging on the DOA DSP software by editing the settings.json text file `nano ~/krakensdr_doa/krakensdr_doa/settings.json` and setting `logging_level = 2`.
+
+Remember to turn logging off again by setting the logging levels to 5 after the issue is fixed, to avoid a large log file growing on the SD card.
+
+## Tuner Test
+Here we will confirm that all the tuners in the KrakenSDR system are seen by the computing device. 
+
+Connect an HDMI monitor and keyboard, or SSH into the terminal as shown above.
+
+In a terminal window run “rtl_test -d0”. You should see a message like the following.
+
+```
+Found 5 device(s):
+  0:  Realtek, RTL2838UHIDIR, SN: 1004
+  1:  Realtek, RTL2838UHIDIR, SN: 1000
+  2:  Realtek, RTL2838UHIDIR, SN: 1001
+  3:  Realtek, RTL2838UHIDIR, SN: 1002
+  4:  Realtek, RTL2838UHIDIR, SN: 1003
+
+Using device 0: Generic RTL2832U OEM
+Found Rafael Micro R820T/2 tuner
+Supported gain values (29): 0.0 0.9 1.4 2.7 3.7 7.7 8.7 12.5 14.4 15.7 16.6 19.7 20.7 22.9 25.4 28.0 29.7 32.8 33.8 36.4 37.2 38.6 40.2 42.1 43.4 43.9 44.5 48.0 49.6
+Sampling at 2048000 S/s.
+
+Info: This tool will continuously read from the device, and report if samples get lost. If you observe no further output, everything is fine.
+
+Reading samples in async mode...
+Allocating 15 (non-zero-copy) user-space buffers
+
+Type “CTRL” + “C” to exit the test.
+```
+
+Try again with another tuner, by running “rtl_test -d1”, and so on until “rtl_test -d4”.
+
+If all the tuners showed similar messages, then we have confirmed that all the tuners are functional.
+
+## Power Supply Test
+Remember that the KrakenSDR **must** be powered with a 5V/2.4A+ capable external power supply. No power is provided over the USB data port.
+
+Open four terminals, and in each individual terminal run rtl_test for an individual tuner
+
+`rtl_test -d0`
+`rtl_test -d1`
+`rtl_test -d2`
+`rtl_test -d3`
+`rtl_test -d4`
+
+Confirm that all tuners can be running at the same time. If there is a tuner that runs normally by itself, but fails to start when others are running then, it is likely that your power supply is providing insufficient current.
+
+## Other things to check
+
+* Ensure that you are using a high quality and short USB-C data cable.
+* Double check with another USB device that the USB port on your computing device is not faulty.
