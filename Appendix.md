@@ -61,3 +61,5 @@ In the `~/krakensdr_doa/krakensdr_doa` folder there is a file called `settings.j
 An external piece of software can edit this file, and the software will automatically update it's settings to those specified once the file is changed.
 
 It is up to you the programmer to ensure that the inputs are valid. Entering incorrect values may crash the software.
+
+# Frequently asked Questions (FAQ)
