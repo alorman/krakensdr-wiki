@@ -99,7 +99,7 @@ The KrakenSDR is not a naturally coherent system just by its SDR hardware alone.
 
 Once the software has booted, the noise source will be activated, and each channel automatically correlated against the master channel (CH0 by default). Any sample timing and phase differences between the channels will be determined, and each sample’s timing and phase will be automatically adjusted in software. This results in the coherent operation of all five channels.
 
-# Caring and protecting your KrakenSDR
+# Caring for your KrakenSDR
 
 ## Nearby Transmitters
 The KrakenSDR is a sensitive radio receiver. Like most radio receivers, any antennas connected to the KrakenSDR MUST be kept away from powerful nearby RF transmitters. 
