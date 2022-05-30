@@ -28,6 +28,5 @@ The KrakenSDR software is also compatible with KerberosSDR units. Users will onl
 
 # Videos
 
-## KrakenSDR Direction Finding in a Vehicle
-
-https://www.youtube.com/watch?v=OY16y1Rl86g
+**KrakenSDR Direction Finding in a Vehicle:** https://www.youtube.com/watch?v=OY16y1Rl86g
+**KrakenSDR Passive Radar Demonstration:** https://www.youtube.com/watch?v=GZAbPsT3oRM
