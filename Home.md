@@ -1,3 +1,6 @@
+![image](https://user-images.githubusercontent.com/78108016/170861942-ca473872-7b85-4c8c-ab87-9bebba5c9f95.png)
+![image](https://user-images.githubusercontent.com/78108016/170861840-a85f09fb-d66c-44b6-b5de-b3771c6ed7af.png)
+
 A coherent radio allows for very interesting applications, such as radio direction finding, passive radar, and beamforming. Some use cases include:
 
 * Physically locating an unknown transmitter of interest (e.g. illegal or interfering broadcasts, noise transmissions, or just as a curiosity)
@@ -22,9 +25,6 @@ This Wiki details the use of our software stack. Our software consists of the co
 
 The KrakenSDR software is also compatible with KerberosSDR units. Users will only need to change the configuration file. However, KerberosSDR users will still need to manually disconnect antennas during a calibration cycle (or purchase a third party switch upgrade).
 
-![image](https://user-images.githubusercontent.com/78108016/170861942-ca473872-7b85-4c8c-ab87-9bebba5c9f95.png)
-
-![image](https://user-images.githubusercontent.com/78108016/170861840-a85f09fb-d66c-44b6-b5de-b3771c6ed7af.png)
 
 # Videos
 
