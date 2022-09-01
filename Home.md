@@ -34,8 +34,11 @@ For a quick way to get started with KrakenSDR and a Pi 4, consult our [https://g
 Links to our software repos:
 
 Heimdall DAQ - https://github.com/krakenrf/heimdall_daq_fw/
+
 KrakenSDR Direction Finding - https://github.com/krakenrf/krakensdr_doa
+
 KrakenSDR Passive Radar - https://github.com/krakenrf/krakensdr_pr
+
 KrakenSDR GNU Radio Block - https://github.com/krakenrf/gr-krakensdr
 
 # Videos
