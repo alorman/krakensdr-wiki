@@ -22,7 +22,7 @@ KrakenSDR is the upgraded version of KerberosSDR. The main new feature is that w
 
 KrakenSDR also has 5-channels vs 4-channel on the KerberosSDR. The additional channel improves bearing accuracy.
 
-The entire design is also improved with USB-C used, an improved low noise design, bias tees, improved cooling and improved ESD protection.
+The entire design is also improved with USB-C used, an improved low noise design, bias tees, improved cooling, a more rugged enclosure, and improved ESD protection.
 
 # KrakenSDR Software
 This Wiki details the use of our software stack. Our software consists of the core DAQ and DSP software which is designed to run on a Raspberry Pi 4 or similar single board computer that is connected to the KrakenSDR. The second layer of software is an Android App which is used to plot and map the bearing data produced by the core system.
