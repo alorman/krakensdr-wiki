@@ -29,6 +29,14 @@ This Wiki details the use of our software stack. Our software consists of the co
 
 The KrakenSDR software is also compatible with KerberosSDR units. Users will only need to change the configuration file. However, KerberosSDR users will still need to manually disconnect antennas during a calibration cycle (or purchase a third party switch upgrade).
 
+For a quick way to get started with KrakenSDR and a Pi 4, consult our [https://github.com/krakenrf/krakensdr_docs/wiki/02.-Direction-Finding-Quickstart-Guide](Quick Start Guide) on this wiki.
+
+Links to our software repos:
+
+Heimdall DAQ - https://github.com/krakenrf/heimdall_daq_fw/
+KrakenSDR Direction Finding - https://github.com/krakenrf/krakensdr_doa
+KrakenSDR Passive Radar - https://github.com/krakenrf/krakensdr_pr
+KrakenSDR GNU Radio Block - https://github.com/krakenrf/gr-krakensdr
 
 # Videos
 
