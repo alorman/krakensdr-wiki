@@ -55,7 +55,7 @@ KrakenSDR GNU Radio Block - https://github.com/krakenrf/gr-krakensdr
 * Radio Tuner: 5x R820T2
 * Radio ADC: 5x RTL2832U
 * ADC Bit Depth: 8-bits
-* Frequency Range: 24 MHz -1766 GHz
+* Frequency Range: 24 MHz -1766 MHz
 * Maximum Channel Bandwidth: 2.56 MHz
 * RX Channels: 5
 * Oscillator Stability: 1PPM
