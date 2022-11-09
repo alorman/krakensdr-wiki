@@ -5,14 +5,13 @@
 <img src="https://user-images.githubusercontent.com/78108016/170988033-4dfd93eb-8f1e-4f2c-a943-f7a0723b557a.png"/>
 </p>
 
-A coherent radio allows for very interesting applications, such as radio direction finding, passive radar, and beamforming. Some use cases include:
+A coherent radio allows for very interesting applications, such as radio direction finding, and beamforming. Some use cases include:
 
 * Physically locating an unknown transmitter of interest (e.g. illegal or interfering broadcasts, noise transmissions, or just as a curiosity)
 * HAM radio experiments such as radio fox hunts or monitoring repeater abuse
 * Tracking assets, wildlife, or domestic animals outside of network coverage through the use of low power beacons
 * Locating emergency beacons for search-and-rescue teams
 * Locating lost ships via VHF radio
-* Passive radar detection of aircraft, boats, and drones
 * Traffic-density monitoring via passive radar
 * Beamforming
 * Interferometry for radio astronomy
@@ -37,15 +36,11 @@ Heimdall DAQ - https://github.com/krakenrf/heimdall_daq_fw/
 
 KrakenSDR Direction Finding - https://github.com/krakenrf/krakensdr_doa
 
-KrakenSDR Passive Radar - https://github.com/krakenrf/krakensdr_pr
-
 KrakenSDR GNU Radio Block - https://github.com/krakenrf/gr-krakensdr
 
 # Videos
 
 **KrakenSDR Direction Finding in a Vehicle:** https://www.youtube.com/watch?v=OY16y1Rl86g
-
-**KrakenSDR Passive Radar Demonstration:** https://www.youtube.com/watch?v=GZAbPsT3oRM
 
 # Technical Specifications
 
