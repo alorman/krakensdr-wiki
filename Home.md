@@ -12,7 +12,6 @@ A coherent radio allows for very interesting applications, such as radio directi
 * Tracking assets, wildlife, or domestic animals outside of network coverage through the use of low power beacons
 * Locating emergency beacons for search-and-rescue teams
 * Locating lost ships via VHF radio
-* Traffic-density monitoring via passive radar
 * Beamforming
 * Interferometry for radio astronomy
 
