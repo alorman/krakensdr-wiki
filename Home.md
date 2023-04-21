@@ -148,6 +148,9 @@ The KrakenSDR is compliant with RoHs. However, as the KrakenSDR contains a PCB a
 
 # Warranty
 The KrakenSDR has a one-year warranty from manufacturing defects.
-Please keep in mind the warranty will not cover damage from external events such as lightning or ESD, fire, over voltage, flooding, physical damage, or modifications.
+
+Please keep in mind the warranty will not cover damage from external events such as lightning or ESD, fire, over voltage, flooding, physical damage, or modifications. 
+
+The warranty will be voided if the KrakenSDR enclosure is opened.
 
 If you have a warranty claim, please contact us at thekraken@krakenrf.com.
